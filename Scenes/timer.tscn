@@ -1,31 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://cic2o1t05dek"]
+[gd_scene load_steps=7 format=3 uid="uid://cic2o1t05dek"]
 
 [ext_resource type="Script" uid="uid://b67j7405kqu14" path="res://Scripts/pomodoro.gd" id="1_ycw00"]
 [ext_resource type="Texture2D" uid="uid://bphj4uu76mbp6" path="res://icon.svg" id="2_4hjkw"]
+[ext_resource type="FontFile" uid="uid://dbrehpk8vt7nk" path="res://Fonts/belanidi_serif/BelanidiSerif-Regular.otf" id="2_6wwcs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hjkw"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.317647, 0.654902, 0.729412, 0.466667)
+corner_radius_top_left = 15
+
+[sub_resource type="Theme" id="Theme_6wwcs"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_4hjkw")
+
+[sub_resource type="Theme" id="Theme_sw2ev"]
+default_font = ExtResource("2_6wwcs")
+Label/font_sizes/font_size = 75
+Label/fonts/font = ExtResource("2_6wwcs")
 
 [node name="Timer" type="Node" node_paths=PackedStringArray("start_button", "restart_button", "timer_label")]
 script = ExtResource("1_ycw00")
-start_button = NodePath("VBoxContainer/HBoxContainer/Start")
-restart_button = NodePath("VBoxContainer/HBoxContainer/Restart")
-timer_label = NodePath("VBoxContainer/TimerLabel")
+start_button = NodePath("Panel/VBoxContainer/HBoxContainer/Start")
+restart_button = NodePath("Panel/VBoxContainer/HBoxContainer/Restart")
+timer_label = NodePath("Panel/VBoxContainer/TimerLabel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -320.0
+offset_right = 80.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_6wwcs")
 
-[node name="TimerLabel" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_sw2ev")
 text = "00:00"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Start" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="Start" type="TextureButton" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_4hjkw")
 
-[node name="Restart" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="Restart" type="TextureButton" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_4hjkw")
 
@@ -33,5 +64,5 @@ texture_normal = ExtResource("2_4hjkw")
 
 [node name="Alarm" type="AudioStreamPlayer" parent="."]
 
-[connection signal="button_up" from="VBoxContainer/HBoxContainer/Start" to="." method="_on_start_button_up"]
-[connection signal="button_up" from="VBoxContainer/HBoxContainer/Restart" to="." method="_on_restart_button_up"]
+[connection signal="button_up" from="Panel/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Panel/VBoxContainer/HBoxContainer/Restart" to="." method="_on_restart_button_up"]
