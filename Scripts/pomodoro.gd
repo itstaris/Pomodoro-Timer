@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 @onready var timer: Timer = $Timer
 @export var start_button : TextureButton

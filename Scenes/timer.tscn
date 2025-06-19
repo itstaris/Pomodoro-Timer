@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cic2o1t05dek"]
+[gd_scene load_steps=6 format=3 uid="uid://cic2o1t05dek"]
 
 [ext_resource type="Script" uid="uid://b67j7405kqu14" path="res://Scripts/pomodoro.gd" id="1_ycw00"]
 [ext_resource type="Texture2D" uid="uid://bphj4uu76mbp6" path="res://icon.svg" id="2_4hjkw"]
-[ext_resource type="FontFile" uid="uid://dbrehpk8vt7nk" path="res://Fonts/belanidi_serif/BelanidiSerif-Regular.otf" id="2_6wwcs"]
+[ext_resource type="Theme" uid="uid://dhpcjsmphk55e" path="res://Theme/timer.tres" id="2_6wwcs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hjkw"]
 content_margin_left = 30.0
@@ -15,18 +15,20 @@ corner_radius_top_left = 15
 [sub_resource type="Theme" id="Theme_6wwcs"]
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_4hjkw")
 
-[sub_resource type="Theme" id="Theme_sw2ev"]
-default_font = ExtResource("2_6wwcs")
-Label/font_sizes/font_size = 75
-Label/fonts/font = ExtResource("2_6wwcs")
-
-[node name="Timer" type="Node" node_paths=PackedStringArray("start_button", "restart_button", "timer_label")]
+[node name="Timer" type="Control" node_paths=PackedStringArray("start_button", "restart_button", "timer_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ycw00")
 start_button = NodePath("Panel/VBoxContainer/HBoxContainer/Start")
 restart_button = NodePath("Panel/VBoxContainer/HBoxContainer/Restart")
 timer_label = NodePath("Panel/VBoxContainer/TimerLabel")
 
 [node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -45,7 +47,7 @@ layout_mode = 2
 
 [node name="TimerLabel" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_sw2ev")
+theme = ExtResource("2_6wwcs")
 text = "00:00"
 horizontal_alignment = 1
 
