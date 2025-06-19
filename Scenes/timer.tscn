@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cic2o1t05dek"]
+
+[ext_resource type="Script" uid="uid://b67j7405kqu14" path="res://Scripts/pomodoro.gd" id="1_ycw00"]
+[ext_resource type="Texture2D" uid="uid://bphj4uu76mbp6" path="res://icon.svg" id="2_4hjkw"]
+
+[node name="Timer" type="Node" node_paths=PackedStringArray("start_button", "restart_button", "timer_label")]
+script = ExtResource("1_ycw00")
+start_button = NodePath("VBoxContainer/HBoxContainer/Start")
+restart_button = NodePath("VBoxContainer/HBoxContainer/Restart")
+timer_label = NodePath("VBoxContainer/TimerLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimerLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_4hjkw")
+
+[node name="Restart" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_4hjkw")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Alarm" type="AudioStreamPlayer" parent="."]
+
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/Restart" to="." method="_on_restart_button_up"]
