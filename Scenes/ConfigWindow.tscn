@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1u4enkc4h33a"]
+
+[ext_resource type="FontFile" uid="uid://dbrehpk8vt7nk" path="res://Fonts/belanidi_serif/BelanidiSerif-Regular.otf" id="1_dkkrk"]
+
+[sub_resource type="Theme" id="Theme_x77p7"]
+Label/fonts/font = ExtResource("1_dkkrk")
+
+[node name="Window" type="Window"]
+position = Vector2i(0, 36)
+size = Vector2i(300, 350)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -91.0
+offset_right = 45.5
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="work_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_x77p7")
+text = "Work time"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="work_spinbox" type="SpinBox" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="short_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_x77p7")
+text = "Short break"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="short_spinbox" type="SpinBox" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="long_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_x77p7")
+text = "Long break"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="long_spinbox" type="SpinBox" parent="VBoxContainer"]
+layout_mode = 2
