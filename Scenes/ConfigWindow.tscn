@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1u4enkc4h33a"]
+[gd_scene load_steps=5 format=3 uid="uid://c1u4enkc4h33a"]
 
+[ext_resource type="Script" uid="uid://h3hwdlquvjhw" path="res://Scripts/config_window.gd" id="1_58bvf"]
 [ext_resource type="FontFile" uid="uid://dbrehpk8vt7nk" path="res://Fonts/belanidi_serif/BelanidiSerif-Regular.otf" id="1_dkkrk"]
+[ext_resource type="Theme" uid="uid://c0tb4ebmrdyu2" path="res://Theme/h_config.tres" id="2_7vlwe"]
 
 [sub_resource type="Theme" id="Theme_x77p7"]
+Label/font_sizes/font_size = 13
 Label/fonts/font = ExtResource("1_dkkrk")
 
 [node name="Window" type="Window"]
 position = Vector2i(0, 36)
-size = Vector2i(300, 350)
+size = Vector2i(346, 350)
+script = ExtResource("1_58bvf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -15,39 +19,65 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -45.5
-offset_top = -91.0
-offset_right = 45.5
-offset_bottom = 91.0
+offset_left = -137.0
+offset_top = -104.0
+offset_right = 138.0
+offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
 
-[node name="work_label" type="Label" parent="VBoxContainer"]
+[node name="Work" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_7vlwe")
+
+[node name="work_label" type="Label" parent="VBoxContainer/Work"]
+layout_mode = 2
+size_flags_horizontal = 0
 theme = SubResource("Theme_x77p7")
-text = "Work time"
+text = "Work time (min)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="work_spinbox" type="SpinBox" parent="VBoxContainer"]
+[node name="work_spinbox" type="SpinBox" parent="VBoxContainer/Work"]
 layout_mode = 2
+max_value = 60.0
 
-[node name="short_label" type="Label" parent="VBoxContainer"]
+[node name="ShortBreak" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7vlwe")
+alignment = 1
+
+[node name="short_label" type="Label" parent="VBoxContainer/ShortBreak"]
 layout_mode = 2
 theme = SubResource("Theme_x77p7")
-text = "Short break"
+text = "Short break (min)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="short_spinbox" type="SpinBox" parent="VBoxContainer"]
+[node name="short_spinbox" type="SpinBox" parent="VBoxContainer/ShortBreak"]
 layout_mode = 2
+max_value = 60.0
 
-[node name="long_label" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7vlwe")
+
+[node name="long_label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_x77p7")
-text = "Long break"
+text = "Long break (min)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="long_spinbox" type="SpinBox" parent="VBoxContainer"]
+[node name="long_spinbox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+max_value = 60.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Save"
