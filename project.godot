@@ -23,6 +23,7 @@ Globals="*res://Scripts/Globals.gd"
 window/size/viewport_width=480
 window/size/viewport_height=640
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://c0vnbgg0twidy"
 
 [rendering]
 
