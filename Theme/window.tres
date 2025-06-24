@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bs6t54eot7ii4"]
+
+[ext_resource type="Texture2D" uid="uid://b4nd5icngm2m4" path="res://Assets/RetroWindowsGUI/Window_Header.png" id="1_elh7l"]
+
+[resource]
+texture = ExtResource("1_elh7l")
+texture_margin_left = 2.0
+texture_margin_top = 23.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0

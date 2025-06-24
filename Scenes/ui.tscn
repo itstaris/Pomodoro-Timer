@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvlgd4bduojv4"]
+[gd_scene load_steps=6 format=3 uid="uid://cvlgd4bduojv4"]
 
 [ext_resource type="Script" uid="uid://c8uv851vxx5cb" path="res://Scripts/ui.gd" id="1_2246s"]
 [ext_resource type="PackedScene" uid="uid://cic2o1t05dek" path="res://Scenes/timer.tscn" id="1_jxero"]
 [ext_resource type="Theme" uid="uid://dhpcjsmphk55e" path="res://Theme/timer.tres" id="2_qdvrb"]
 [ext_resource type="Texture2D" uid="uid://bphj4uu76mbp6" path="res://icon.svg" id="4_q7pk6"]
+[ext_resource type="PackedScene" uid="uid://cbsbd5h2w4gq5" path="res://Scenes/ConfigWindowtest.tscn" id="5_q7pk6"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -15,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_2246s")
 
 [node name="TabContainer" type="TabContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,5 +56,8 @@ offset_top = 21.0
 offset_right = 448.0
 offset_bottom = 149.0
 texture_normal = ExtResource("4_q7pk6")
+
+[node name="Window" parent="." instance=ExtResource("5_q7pk6")]
+position = Vector2i(10, 36)
 
 [connection signal="pressed" from="config_button" to="." method="_on_config_button_pressed"]

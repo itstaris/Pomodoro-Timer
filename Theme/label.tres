@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bs1owmsbcv1hs"]
+
+[ext_resource type="FontFile" uid="uid://c2o1ypo5rdbyl" path="res://Fonts/leviwindows/Windows Regular.ttf" id="1_5niub"]
+
+[resource]
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_5niub")

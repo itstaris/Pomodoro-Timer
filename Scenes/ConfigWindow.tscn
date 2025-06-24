@@ -1,17 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1u4enkc4h33a"]
+[gd_scene load_steps=8 format=3 uid="uid://c1u4enkc4h33a"]
 
 [ext_resource type="Script" uid="uid://h3hwdlquvjhw" path="res://Scripts/config_window.gd" id="1_58bvf"]
-[ext_resource type="FontFile" uid="uid://dbrehpk8vt7nk" path="res://Fonts/belanidi_serif/BelanidiSerif-Regular.otf" id="1_dkkrk"]
+[ext_resource type="FontFile" uid="uid://c2o1ypo5rdbyl" path="res://Fonts/leviwindows/Windows Regular.ttf" id="1_dq57q"]
 [ext_resource type="Theme" uid="uid://c0tb4ebmrdyu2" path="res://Theme/h_config.tres" id="2_7vlwe"]
+[ext_resource type="Theme" uid="uid://bs1owmsbcv1hs" path="res://Theme/label.tres" id="4_wvimv"]
+[ext_resource type="Theme" uid="uid://bs1r5i12s7s5a" path="res://Theme/spinbox.tres" id="4_ylsiw"]
+[ext_resource type="Theme" uid="uid://meb3cn6uddhy" path="res://Theme/button.tres" id="7_dq57q"]
 
-[sub_resource type="Theme" id="Theme_x77p7"]
-Label/font_sizes/font_size = 13
-Label/fonts/font = ExtResource("1_dkkrk")
+[sub_resource type="Theme" id="Theme_ylsiw"]
+default_font = ExtResource("1_dq57q")
+default_font_size = 2
+Window/font_sizes/title_font_size = 23
+Window/fonts/title_font = ExtResource("1_dq57q")
 
-[node name="Window" type="Window"]
+[node name="Window" type="Window" node_paths=PackedStringArray("work_spinbox", "short_break_spinbox", "long_break_spinbox")]
+title = "Settings"
 position = Vector2i(0, 36)
 size = Vector2i(346, 350)
+theme = SubResource("Theme_ylsiw")
 script = ExtResource("1_58bvf")
+work_spinbox = NodePath("VBoxContainer/Work/work_spinbox")
+short_break_spinbox = NodePath("VBoxContainer/ShortBreak/short_spinbox")
+long_break_spinbox = NodePath("VBoxContainer/HBoxContainer/long_spinbox")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -25,7 +35,7 @@ offset_right = 138.0
 offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 alignment = 1
@@ -33,34 +43,34 @@ alignment = 1
 [node name="Work" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme = ExtResource("2_7vlwe")
 
 [node name="work_label" type="Label" parent="VBoxContainer/Work"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme = SubResource("Theme_x77p7")
+theme = ExtResource("4_wvimv")
 text = "Work time (min)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="work_spinbox" type="SpinBox" parent="VBoxContainer/Work"]
 layout_mode = 2
+theme = ExtResource("4_ylsiw")
 max_value = 60.0
 
 [node name="ShortBreak" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_7vlwe")
-alignment = 1
 
 [node name="short_label" type="Label" parent="VBoxContainer/ShortBreak"]
 layout_mode = 2
-theme = SubResource("Theme_x77p7")
+theme = ExtResource("4_wvimv")
 text = "Short break (min)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="short_spinbox" type="SpinBox" parent="VBoxContainer/ShortBreak"]
 layout_mode = 2
+theme = ExtResource("4_ylsiw")
 max_value = 60.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -69,15 +79,21 @@ theme = ExtResource("2_7vlwe")
 
 [node name="long_label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_x77p7")
+theme = ExtResource("4_wvimv")
 text = "Long break (min)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="long_spinbox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_ylsiw")
 max_value = 60.0
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="save_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Save"
+size_flags_horizontal = 4
+theme = ExtResource("7_dq57q")
+text = "  Save  "
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="button_up" from="VBoxContainer/save_button" to="." method="_on_save_button_button_up"]

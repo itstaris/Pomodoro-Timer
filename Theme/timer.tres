@@ -3,6 +3,5 @@
 [ext_resource type="FontFile" uid="uid://dbrehpk8vt7nk" path="res://Fonts/belanidi_serif/BelanidiSerif-Regular.otf" id="1_kcvin"]
 
 [resource]
-default_font = ExtResource("1_kcvin")
 Label/font_sizes/font_size = 75
 Label/fonts/font = ExtResource("1_kcvin")
