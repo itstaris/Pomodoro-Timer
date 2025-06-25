@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgm7hnm14owio"]
+
+[ext_resource type="Theme" uid="uid://n3toqn68sjjo" path="res://Theme/maintheme.tres" id="1_spxoh"]
+[ext_resource type="PackedScene" uid="uid://cic2o1t05dek" path="res://Scenes/timer.tscn" id="2_kce7t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_odi76"]
+font_size = 21
+outline_size = 1
+shadow_size = 0
+
+[node name="PomodoroApp" type="Panel"]
+offset_left = 60.0
+offset_top = 113.0
+offset_right = 425.0
+offset_bottom = 510.0
+theme = ExtResource("1_spxoh")
+
+[node name="header" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.125714
+grow_horizontal = 2
+
+[node name="color_rect" type="ColorRect" parent="header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0164384
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 46.0
+offset_bottom = 36.0
+scale = Vector2(7.56, 1.2)
+color = Color(0, 0, 0.501961, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="tittle" type="Label" parent="header"]
+layout_mode = 2
+anchor_right = 0.161644
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 92.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Pomodoro Timer"
+label_settings = SubResource("LabelSettings_odi76")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" parent="." instance=ExtResource("2_kce7t")]
+layout_mode = 1
