@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvlgd4bduojv4"]
+[gd_scene load_steps=9 format=3 uid="uid://cvlgd4bduojv4"]
 
 [ext_resource type="Script" uid="uid://c8uv851vxx5cb" path="res://Scripts/ui.gd" id="1_2246s"]
+[ext_resource type="PackedScene" uid="uid://dgm7hnm14owio" path="res://Scenes/pomodoro_app.tscn" id="3_q7pk6"]
 [ext_resource type="Texture2D" uid="uid://cly18lwpsc1oa" path="res://Assets/icons/clock-icon.png" id="4_2246s"]
+[ext_resource type="PackedScene" uid="uid://cqdmoga8srxnt" path="res://Scenes/credits_image.tscn" id="4_m78vo"]
 [ext_resource type="FontFile" uid="uid://c2o1ypo5rdbyl" path="res://Fonts/leviwindows/Windows Regular.ttf" id="5_m78vo"]
 [ext_resource type="PackedScene" uid="uid://cbsbd5h2w4gq5" path="res://Scenes/ConfigWindowtest.tscn" id="5_q7pk6"]
+[ext_resource type="Theme" uid="uid://n3toqn68sjjo" path="res://Theme/maintheme.tres" id="7_smcll"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_smcll"]
 line_spacing = 3.175
@@ -19,6 +22,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2246s")
 config_window = ExtResource("5_q7pk6")
+pomodoro_app = ExtResource("3_q7pk6")
+credits_image = ExtResource("4_m78vo")
 
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
@@ -94,5 +99,21 @@ layout_mode = 2
 text = "credits.png"
 label_settings = SubResource("LabelSettings_smcll")
 horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("7_smcll")
+
+[node name="Startup_soud" type="AudioStreamPlayer" parent="."]
 
 [connection signal="button_up" from="GridContainer/icon_settings/settings_app" to="." method="_on_settings_app_button_up"]

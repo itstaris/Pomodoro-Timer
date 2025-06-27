@@ -5,15 +5,15 @@ extends Control
 @export var restart_button : Button
 @export var timer_label : Label
 
-var pomodoro = Globals.pomodoro
+var longbreak = Globals.long_break
 
 var total_seconds = 0
-var minutes = pomodoro
+var minutes = longbreak
 var paused : bool = false
 var running : bool = false
 
 func _ready():
-	timer_label.text = "%02d:00" % [pomodoro]
+	timer_label.text = "%02d:00" % [longbreak]
 	timer.timeout.connect(_on_timer_timeout)
 	restart_button.disabled = true
 	
@@ -53,8 +53,8 @@ func update_timer_label():
 func _on_restart_button_up() -> void:
 	paused = false
 	running = false
-	minutes = pomodoro
-	timer_label.text = "%02d:00" % [pomodoro]
+	minutes = longbreak
+	timer_label.text = "%02d:00" % [longbreak]
 	timer.stop()
 	restart_button.disabled = true
 	start_button.text = "Start"

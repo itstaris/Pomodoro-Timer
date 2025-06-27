@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://cic2o1t05dek"]
+
+[ext_resource type="Script" uid="uid://b67j7405kqu14" path="res://Scripts/pomodoro.gd" id="1_ma04w"]
+[ext_resource type="Theme" uid="uid://n3toqn68sjjo" path="res://Theme/maintheme.tres" id="2_ns0m4"]
+[ext_resource type="AudioStream" uid="uid://b6ao0xc6dehjd" path="res://Sounds/Alarm.mp3" id="3_v4khv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wwcs"]
+
+[sub_resource type="Theme" id="Theme_sw2ev"]
+Panel/styles/panel = SubResource("StyleBoxEmpty_6wwcs")
+
+[node name="Timer" type="Control" node_paths=PackedStringArray("start_button", "restart_button", "timer_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_ma04w")
+start_button = NodePath("Panel/VBoxContainer/HBoxContainer/Start")
+restart_button = NodePath("Panel/VBoxContainer/HBoxContainer/Restart")
+timer_label = NodePath("Panel/VBoxContainer/TimerLabel")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -198.5
+offset_right = 182.5
+offset_bottom = 198.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_sw2ev")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 39.0
+offset_right = -23.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ns0m4")
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="TimerLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 98
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="Start" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="Restart" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restart"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Alarm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_v4khv")
+
+[connection signal="button_up" from="Panel/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Panel/VBoxContainer/HBoxContainer/Restart" to="." method="_on_restart_button_up"]

@@ -114,14 +114,19 @@ label_settings = SubResource("LabelSettings_qg1fq")
 metadata/_edit_use_anchors_ = true
 
 [node name="exit_button" type="Button" parent="header"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.003125
+anchor_right = -0.003125
 offset_left = 275.0
 offset_top = 9.0
 offset_right = 292.0
 offset_bottom = 24.0
 scale = Vector2(2.16, 2.003)
+focus_mode = 0
 theme_override_font_sizes/font_size = 2
 icon = ExtResource("3_obmfl")
+icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="button_up" from="VBoxContainer/save_button" to="." method="_on_save_button_button_up"]

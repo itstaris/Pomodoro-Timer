@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctifsq4qbqdvj"]
+
+[ext_resource type="Script" uid="uid://dum3vj4gtq6sb" path="res://Scripts/splash_screen.gd" id="1_h5jmx"]
+[ext_resource type="Texture2D" uid="uid://c7tjqgt0yefwp" path="res://Assets/windows_95_wallpaper_clouds_remastered_by_zadarkside0_ddsmcyj-pre.jpg" id="1_wwf30"]
+[ext_resource type="Texture2D" uid="uid://dnns5ypruxfmj" path="res://Assets/pp_504x498-pad_600x600_f8f8f8-removebg-preview.png" id="2_h5jmx"]
+
+[sub_resource type="Animation" id="Animation_hnr0x"]
+resource_name = "splash screen"
+length = 5.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8jcts"]
+_data = {
+&"splash screen": SubResource("Animation_hnr0x")
+}
+
+[node name="Splash_screen" type="Node2D"]
+script = ExtResource("1_h5jmx")
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(515.609, 319.25)
+scale = Vector2(0.907355, 0.907355)
+texture = ExtResource("1_wwf30")
+
+[node name="logo" type="Sprite2D" parent="."]
+position = Vector2(248, 344)
+scale = Vector2(0.852, 0.852)
+texture = ExtResource("2_h5jmx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../bg")
+libraries = {
+&"": SubResource("AnimationLibrary_8jcts")
+}
+autoplay = "splash screen"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
