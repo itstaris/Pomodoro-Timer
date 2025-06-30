@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://n3toqn68sjjo" path="res://Theme/maintheme.tres" id="1_jsti1"]
 [ext_resource type="Script" uid="uid://dwuaub0iprhpi" path="res://Scripts/credits_image.gd" id="2_gf3jo"]
-[ext_resource type="Texture2D" uid="uid://bphj4uu76mbp6" path="res://icon.svg" id="2_p8k8y"]
+[ext_resource type="Texture2D" uid="uid://cc43mfinvtkls" path="res://Assets/credits.png" id="3_gf3jo"]
 [ext_resource type="Texture2D" uid="uid://d2caakihnfj8r" path="res://Assets/x.png" id="4_xwedd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_odi76"]
@@ -62,7 +62,7 @@ offset_right = 171.5
 offset_bottom = 185.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_p8k8y")
+texture = ExtResource("3_gf3jo")
 expand_mode = 2
 
 [node name="exit_button" type="Button" parent="."]

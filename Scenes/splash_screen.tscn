@@ -6,7 +6,7 @@
 
 [sub_resource type="Animation" id="Animation_hnr0x"]
 resource_name = "splash screen"
-length = 5.0
+length = 4.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8jcts"]
 _data = {
@@ -17,7 +17,7 @@ _data = {
 script = ExtResource("1_h5jmx")
 
 [node name="bg" type="Sprite2D" parent="."]
-position = Vector2(515.609, 319.25)
+position = Vector2(512, 319.25)
 scale = Vector2(0.907355, 0.907355)
 texture = ExtResource("1_wwf30")
 

@@ -7,10 +7,11 @@ extends Panel
 var dragging = false
 var drag_offset = Vector2.ZERO
 
+# Pré-carregando as cenas diretamente
 var scenes := {
-	"Work Time": "res://Scenes/pomodoro.tscn",
-	"Short Break": "res://scenes/shortbreak.tscn",
-	"Long Break": "res://scenes/longbreak.tscn"
+	"Work Time": preload("res://Scenes/pomodoro.tscn"),
+	"Short Break": preload("res://Scenes/shortbreak.tscn"),
+	"Long Break": preload("res://Scenes/longbreak.tscn")
 }
 
 func _ready():
@@ -20,16 +21,19 @@ func _ready():
 
 func _on_scene_selected(index: int):
 	var scene_name = option_button.get_item_text(index)
-	var scene_path = scenes[scene_name]
-	var scene = load(scene_path).instantiate()
+	
+	# Verifica se a cena foi pré-carregada corretamente
+	if scenes.has(scene_name):
+		var packed_scene: PackedScene = scenes[scene_name]
+		var scene_instance = packed_scene.instantiate()
 
+		# Remove filhos anteriores, se houver
+		for child in container.get_children():
+			child.queue_free()
 
-	# Limpa o container antes (opcional, se quiser mostrar só uma por vez)
-	for child in container.get_children():
-		child.queue_free()
-
-	# Adiciona como filho
-	container.add_child(scene)
+		container.add_child(scene_instance)
+	else:
+		print("Erro: cena não encontrada para", scene_name)
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -42,7 +46,6 @@ func _input(event):
 
 	if event is InputEventMouseMotion and dragging:
 		global_position = get_global_mouse_position() - drag_offset
-
 
 func _on_exit_button_button_up() -> void:
 	queue_free()

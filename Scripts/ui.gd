@@ -4,6 +4,8 @@ extends Control
 @export var pomodoro_app : PackedScene
 @export var credits_image : PackedScene
 @onready var startup_sound : AudioStreamPlayer = $Startup_soud
+@onready var start_button : Button = $start_button
+@onready var popup_menu : PopupMenu = $start_button/PopupMenu
 
 #func _ready():
 	# Preparar o Timer
@@ -26,11 +28,31 @@ var click_counts = {}
 var timers = {}
 
 func _ready():
-	# Configurar ícones
+	startup_sound.play()
+	
+	# icon settings
 	setup_double_click(settings_button, abrir_config_janela)
 	setup_double_click(pomodoro_button, abrir_pomodoro)
 	setup_double_click(credits_button, abrir_credits)
-	startup_sound.play()
+	
+	popup_menu.id_pressed.connect(_on_menu_option_selected)
+
+func _on_start_button_pressed() -> void:
+	popup_menu.popup()  # Exibe o menu primeiro (necessário para ele calcular o tamanho)
+
+	call_deferred("_reposition_popup_menu")
+	
+func _reposition_popup_menu():
+	var button_pos = start_button.get_global_position()
+	var menu_size = popup_menu.size
+
+	var position = button_pos - Vector2(0, menu_size.y)
+	popup_menu.position = position
+	
+func _on_menu_option_selected(id):
+	match id:
+		1:
+			get_tree().quit()
 
 func setup_double_click(button: Node, callback: Callable):
 	click_counts[button] = 0
