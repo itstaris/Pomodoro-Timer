@@ -4,21 +4,11 @@ extends Control
 @export var pomodoro_app : PackedScene
 @export var credits_image : PackedScene
 @onready var startup_sound : AudioStreamPlayer = $Startup_soud
+
 @onready var start_button : Button = $start_button
 @onready var popup_menu : PopupMenu = $start_button/PopupMenu
-
-#func _ready():
-	# Preparar o Timer
-	#double_click_timer.wait_time = 0.3
-	#double_click_timer.one_shot = true
-	#double_click_timer.timeout.connect(_on_double_click_timeout)
-	#add_child(double_click_timer)
-	#pass
-	# ctrl K pra tirar o comentário
-
-#func _on_settings_app_button_up() -> void:
-	#var settings_instance = config_window.instantiate()
-	#add_child(settings_instance)
+@onready var assistant_scene := preload("res://Scenes/bonzi_buddy.tscn")
+var assistant_instance: Node = null
 
 @onready var settings_button := $GridContainer/icon_settings/settings_app
 @onready var pomodoro_button := $GridContainer/icon_pomodoro/pomodoro_app
@@ -53,6 +43,14 @@ func _on_menu_option_selected(id):
 	match id:
 		1:
 			get_tree().quit()
+		2:
+			if assistant_instance:
+				assistant_instance.call("close")
+				assistant_instance = null
+			else:
+				assistant_instance = assistant_scene.instantiate()
+				add_child(assistant_instance)
+
 
 func setup_double_click(button: Node, callback: Callable):
 	click_counts[button] = 0
